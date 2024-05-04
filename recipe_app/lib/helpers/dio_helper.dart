@@ -9,7 +9,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 const String staging = 'https://staging.sa/api/';
 const String production = 'https://backend.sa/api/';
 // const String baseUrl = 'https://api.npoint.io/43427003d33f1f6b51cc';
-const String baseUrl = 'https://newsapi.org/v2/';
+const String baseUrl = 'https://api.npoint.io/';
 
 class NetworkService {
   final PrefsService _prefsService;
