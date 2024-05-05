@@ -12,6 +12,7 @@ class MainScreenCubit extends Cubit<MainScreenStates> {
   final MainScreenRepository _mainScreenRepository =
       MainScreenRepository(mainScreenRepository: di());
   List<RecipeListModel> recipes = [];
+  bool? isFavorited = false;
 
   Future<void> getRecipeList() async {
     emit(MainLoadingState());
@@ -24,5 +25,10 @@ class MainScreenCubit extends Cubit<MainScreenStates> {
       emit(MainLoadingState());
       isLoading = false;
     });
+  }
+
+  void isRecipeFavorated(RecipeListModel recipeListModel) {
+    emit(IsFavoriteState());
+    isFavorited = recipeListModel.isFavorite;
   }
 }
