@@ -1,14 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:news_app/core/color.dart';
-import 'package:news_app/core/loading.dart';
-import 'package:news_app/helpers/navigator_key.dart';
-import 'package:news_app/screens/main_screen/ux/cubit.dart';
-import 'package:news_app/screens/news_details_screen/ui/news_details_screen.dart';
+import 'package:recipe_app/core/color.dart';
+import 'package:recipe_app/core/constant.dart';
+import 'package:recipe_app/core/loading.dart';
+import 'package:recipe_app/helpers/navigator_key.dart';
+import 'package:recipe_app/screens/main_screen/ux/cubit.dart';
+// import 'package:recipe_app/screens/news_details_screen/ui/news_details_screen.dart';
 
-class NewsList extends StatelessWidget {
-  const NewsList({
+class RecipesList extends StatelessWidget {
+  const RecipesList({
     super.key,
     required this.cubit,
   });
@@ -18,172 +19,142 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: NotificationListener(
-        onNotification: cubit.onNotification,
-        child: StatefulBuilder(
-          builder: (context, state) {
-            return Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    // shrinkWrap: true,
-                    controller: cubit.scrollController,
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    itemCount: cubit.articles.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final article = cubit.articles[index];
-                      return InkWell(
-                        onTap: () {
-                          RouteManager.navigateTo(
-                            NewsDetailsScreen(
-                              artical: article,
-                            ),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(16.0),
-                          margin: const EdgeInsets.symmetric(vertical: 10.0),
-                          decoration: BoxDecoration(
-                            color: lightGrey50Color,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(color: kBlackColor),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.shade600.withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 10)
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: Platform.isAndroid
-                                    ? MediaQuery.sizeOf(context).height * .14
-                                    : MediaQuery.sizeOf(context).height * .12,
-                                width: MediaQuery.sizeOf(context).width * .23,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  image: DecorationImage(
-                                      image: NetworkImage(article.urlToImage ??
-                                          'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ='),
-                                      fit: BoxFit.fill),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Title: ',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            color: secondry,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  .43,
-                                          child: Text(
-                                            article.title ?? 'NA',
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              fontSize: 16.0,
-                                              color: secondry,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Author: ',
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Color(0xff717171),
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  .43,
-                                          margin:
-                                              const EdgeInsets.only(top: 4.0),
-                                          child: Text(
-                                            article.author != null
-                                                ? article.author!
-                                                : 'NA',
-                                            maxLines: 1,
-                                            style: const TextStyle(
-                                              fontSize: 14.0,
-                                              color: Color(0xff717171),
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Source: ',
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Color(0xff717171),
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  .4,
-                                          margin:
-                                              const EdgeInsets.only(top: 4.0),
-                                          child: Text(
-                                            article.source != null &&
-                                                    article.source?.name != null
-                                                ? article.source!.name!
-                                                : 'NA',
-                                            maxLines: 1,
-                                            style: const TextStyle(
-                                              fontSize: 14.0,
-                                              color: Color(0xff717171),
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              itemCount: cubit.recipes.length,
+              itemBuilder: (BuildContext context, int index) {
+                final recipe = cubit.recipes[index];
+                return InkWell(
+                  onTap: () {
+                    // RouteManager.navigateTo(
+                    // NewsDetailsScreen(
+                    //   artical: article,
+                    // ),
+                    // );
+                  },
+                  child: Container(
+                    height: MediaQuery.sizeOf(context).height * .25,
+                    // padding: const EdgeInsets.all(16.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: BoxDecoration(
+                      color: lightGrey50Color,
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
                         ),
-                      );
-                    },
+                      ],
+                      image: DecorationImage(
+                          image: NetworkImage(recipe.image ??
+                              'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ='),
+                          fit: BoxFit.fill),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * .7,
+                              child: Text(
+                                recipe.headline ?? 'NA',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  color: kWhiteColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0, bottom: 10.0),
+                              padding: const EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(.4),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                    size: 16.0,
+                                  ),
+                                  const SizedBox(
+                                    width: 4.0,
+                                  ),
+                                  Text(
+                                    recipe.rating != null
+                                        ? recipe.rating.toString()
+                                        : 'NA',
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: kWhiteColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0, bottom: 10.0),
+                              padding: const EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(.4),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.access_time,
+                                    color: Colors.yellow,
+                                    size: 16.0,
+                                  ),
+                                  const SizedBox(
+                                    width: 4.0,
+                                  ),
+                                  Text(
+                                    recipe.time != null ? recipe.time! : 'NA',
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: kWhiteColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                if (cubit.isLoadingPagination)
-                  const SizedBox(
-                    height: 50,
-                    child: CustomLoading(),
-                  ),
-              ],
-            );
-          },
-        ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

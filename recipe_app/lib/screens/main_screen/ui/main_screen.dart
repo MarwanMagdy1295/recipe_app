@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:news_app/core/color.dart';
-import 'package:news_app/core/constant.dart';
-import 'package:news_app/core/loading.dart';
-import 'package:news_app/screens/main_screen/ui/news_list.dart';
-import 'package:news_app/screens/main_screen/ux/cubit.dart';
-import 'package:news_app/screens/main_screen/ux/states.dart';
+import 'package:recipe_app/core/color.dart';
+import 'package:recipe_app/core/constant.dart';
+import 'package:recipe_app/core/loading.dart';
+import 'package:recipe_app/screens/main_screen/ui/recipes_list.dart';
+import 'package:recipe_app/screens/main_screen/ux/cubit.dart';
+import 'package:recipe_app/screens/main_screen/ux/states.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,8 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>
-          MainScreenCubit()..getNews(categoryName: ''),
+      create: (BuildContext context) => MainScreenCubit()..getRecipeList(),
       child: Builder(
         builder: (context) {
           final cubit = context.watch<MainScreenCubit>();
@@ -30,10 +29,12 @@ class _MainScreenState extends State<MainScreen> {
             builder: (state, index) {
               return SafeArea(
                 child: Scaffold(
+                  backgroundColor: kWhiteColor,
                   appBar: AppBar(
-                    backgroundColor: kSpecialTextFieldHintColor,
+                    backgroundColor: kWhiteColor,
+                    elevation: 0.0,
                     title: const Text(
-                      'News',
+                      'Food Recipe',
                       style: TextStyle(
                         color: kBlackColor,
                         fontSize: 26.0,
@@ -43,64 +44,9 @@ class _MainScreenState extends State<MainScreen> {
                   body: Column(
                     children: [
                       heght10,
-                      SizedBox(
-                        height: Platform.isAndroid
-                            ? MediaQuery.sizeOf(context).height * .05
-                            : MediaQuery.sizeOf(context).height * .05,
-                        child: ListView.builder(
-                          itemCount: cubit.categories.length,
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) =>
-                              Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                if (cubit.categoryIndex == index) {
-                                } else {
-                                  setState(
-                                    () {
-                                      cubit.categoryName =
-                                          cubit.categories[index];
-                                      cubit.categoryIndex = index;
-                                      cubit.getNews(
-                                          categoryName:
-                                              cubit.categoryName == 'All'
-                                                  ? ''
-                                                  : cubit.categoryName);
-                                    },
-                                  );
-                                }
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                decoration: BoxDecoration(
-                                  color: cubit.categoryIndex == index
-                                      ? primary
-                                      : kWhiteColor,
-                                  border: Border.all(color: kBlackColor),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    cubit.categories[index],
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
-                                      color: kBlackColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      heght10,
                       cubit.isLoading
                           ? const Expanded(child: CustomLoading())
-                          : cubit.articles.isEmpty
+                          : cubit.recipes.isEmpty
                               ? Expanded(
                                   child: Center(
                                     child: Lottie.network(
@@ -108,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                                     ),
                                   ),
                                 )
-                              : NewsList(cubit: cubit),
+                              : RecipesList(cubit: cubit),
                     ],
                   ),
                 ),

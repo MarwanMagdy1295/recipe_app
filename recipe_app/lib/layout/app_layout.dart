@@ -22,7 +22,7 @@ class AppLayout extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Recipe App',
+        title: 'Food Recipe',
         navigatorKey: navigatorKey,
         onGenerateRoute: onGenerateRoute,
         theme: ThemeData(
