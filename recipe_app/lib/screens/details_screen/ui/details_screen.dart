@@ -32,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
                     SliverAppBar(
                       systemOverlayStyle: const SystemUiOverlayStyle(
                           statusBarBrightness: Brightness.dark),
-                      expandedHeight: MediaQuery.sizeOf(context).height * .37,
+                      expandedHeight: MediaQuery.sizeOf(context).height * .3,
                       backgroundColor: Colors.white,
                       elevation: 0.0,
                       pinned: true,
@@ -92,6 +92,7 @@ class DetailsScreen extends StatelessWidget {
                           child: Container(
                             margin: const EdgeInsets.only(
                                 left: 0.0, top: 10.0, right: 16.0),
+                            color: Colors.transparent,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(56.0),
                               child: BackdropFilter(

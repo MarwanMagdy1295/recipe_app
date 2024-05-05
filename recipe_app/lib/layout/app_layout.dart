@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/core/color.dart';
 import 'package:recipe_app/helpers/di_service.dart';
 import 'package:recipe_app/helpers/navigator_key.dart';
-import 'package:recipe_app/screens/main_screen/ui/main_screen.dart';
+import 'package:recipe_app/screens/auth/sign_in/ui/view.dart';
 import 'package:recipe_app/screens/main_screen/ux/cubit.dart';
 
 class AppLayout extends StatelessWidget {
@@ -49,7 +49,7 @@ class AppLayout extends StatelessWidget {
             foregroundColor: kWhiteColor,
           ),
         ),
-        home: MainScreen(),
+        home: SignInScreen(),
       ),
     );
   }

@@ -29,8 +29,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: Scaffold(
                   backgroundColor: kWhiteColor,
                   appBar: AppBar(
-                    backgroundColor: kWhiteColor,
-                    elevation: 0.0,
+                    backgroundColor: kbackGroundColor,
                     title: const Text(
                       'Food Recipe',
                       style: TextStyle(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/color.dart';
 import 'package:recipe_app/helpers/navigator_key.dart';
-import 'package:recipe_app/screens/main_screen/details_screen/ui/details_screen.dart';
+import 'package:recipe_app/screens/details_screen/ui/details_screen.dart';
 // import 'package:recipe_app/core/constant.dart';
 // import 'package:recipe_app/core/loading.dart';
 // import 'package:recipe_app/helpers/navigator_key.dart';
