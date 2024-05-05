@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -32,7 +33,9 @@ class DetailsScreen extends StatelessWidget {
                     SliverAppBar(
                       systemOverlayStyle: const SystemUiOverlayStyle(
                           statusBarBrightness: Brightness.dark),
-                      expandedHeight: MediaQuery.sizeOf(context).height * .3,
+                      expandedHeight: Platform.isAndroid
+                          ? MediaQuery.sizeOf(context).height * .37
+                          : MediaQuery.sizeOf(context).height * .25,
                       backgroundColor: Colors.white,
                       elevation: 0.0,
                       pinned: true,
