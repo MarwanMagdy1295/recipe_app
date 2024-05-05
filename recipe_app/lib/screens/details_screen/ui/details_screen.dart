@@ -34,7 +34,7 @@ class DetailsScreen extends StatelessWidget {
                       systemOverlayStyle: const SystemUiOverlayStyle(
                           statusBarBrightness: Brightness.dark),
                       expandedHeight: Platform.isAndroid
-                          ? MediaQuery.sizeOf(context).height * .37
+                          ? MediaQuery.sizeOf(context).height * .28
                           : MediaQuery.sizeOf(context).height * .25,
                       backgroundColor: Colors.white,
                       elevation: 0.0,

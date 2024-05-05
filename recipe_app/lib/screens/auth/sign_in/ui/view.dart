@@ -23,258 +23,250 @@ class SignInScreen extends StatelessWidget {
               return Scaffold(
                 backgroundColor: kbackGroundColor,
                 extendBodyBehindAppBar: true,
-                body: SafeArea(
-                  child: GestureDetector(
-                    onTap: () {
-                      FocusScope.of(context).unfocus();
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * .08,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'SignIn',
-                                style: TextStyle(
-                                  color: kWhiteColor,
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                body: GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height * .08,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'SignIn',
+                              style: TextStyle(
+                                color: kWhiteColor,
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.w600,
                               ),
-                              // width10,
-                              // Icon(
-                              //   Icons.arrow_forward_rounded,
-                              //   color: kWhiteColor,
-                              // ),
-                              // Spacer(),
-                            ],
-                          ),
-                        ),
-                        heght20,
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                top: 80.0, left: 20.0, right: 20.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30.0),
-                                  topRight: Radius.circular(30.0)),
-                              color: kWhiteColor,
                             ),
-                            // height: MediaQuery.sizeOf(context).height,
-                            child: Form(
-                              key: cubit.formKey,
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.center,
-                                    //   children: [
-                                    //     Text(
-                                    //       '',
-                                    //       style: TextStyle(
-                                    //         color: kBlackColor,
-                                    //         fontSize: 24.0,
-                                    //         fontWeight: FontWeight.w800,
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // heght40,
-                                    Text(
-                                      'Email',
-                                      style: TextStyle(
-                                        color: lightGreyColor,
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                            // width10,
+                            // Icon(
+                            //   Icons.arrow_forward_rounded,
+                            //   color: kWhiteColor,
+                            // ),
+                            // Spacer(),
+                          ],
+                        ),
+                      ),
+                      heght20,
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              top: 80.0, left: 20.0, right: 20.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30.0),
+                                topRight: Radius.circular(30.0)),
+                            color: kWhiteColor,
+                          ),
+                          // height: MediaQuery.sizeOf(context).height,
+                          child: Form(
+                            key: cubit.formKey,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.center,
+                                  //   children: [
+                                  //     Text(
+                                  //       '',
+                                  //       style: TextStyle(
+                                  //         color: kBlackColor,
+                                  //         fontSize: 24.0,
+                                  //         fontWeight: FontWeight.w800,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                  // heght40,
+                                  Text(
+                                    'Email',
+                                    style: TextStyle(
+                                      color: lightGreyColor,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    TextFormField(
-                                      controller: cubit.emailController,
-                                      textInputAction: TextInputAction.next,
-                                      style: TextStyle(
-                                        fontFamily: 'Expo Arabic',
-                                        fontSize: 16,
-                                        color: kSpecialTextFieldHintColor,
-                                      ),
-                                      keyboardType: TextInputType.emailAddress,
-                                      // textAlign: TextAlign.right,
-                                      validator: (value) {
-                                        RegExp exp = RegExp(
-                                            r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$');
-                                        if (value!.isEmpty) {
-                                          return 'Enter Email';
-                                        } else if (!exp
-                                            .hasMatch(value.trim())) {
-                                          return 'Please Enter valid email';
-                                        }
-                                        return null;
-                                        // value!.isEmpty ||
-                                        //         exp.hasMatch(value.trim())
-                                        //     ? 'Enter Email'
-                                        //     : 'Please Enter valid email';
-                                      },
-                                      cursorColor: lightGreyColor,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        counterText: '',
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: lightGreyColor,
-                                          ),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: lightGreyColor,
-                                          ),
-                                        ),
-                                        disabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: lightGreyColor,
-                                          ),
-                                        ),
-                                        border: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: lightGreyColor,
-                                          ),
-                                        ),
-                                        hintStyle: TextStyle(
+                                  ),
+                                  TextFormField(
+                                    controller: cubit.emailController,
+                                    textInputAction: TextInputAction.next,
+                                    style: TextStyle(
+                                      fontFamily: 'Expo Arabic',
+                                      fontSize: 16,
+                                      color: kSpecialTextFieldHintColor,
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    // textAlign: TextAlign.right,
+                                    validator: (value) {
+                                      RegExp exp = RegExp(
+                                          r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$');
+                                      if (value!.isEmpty) {
+                                        return 'Enter Email';
+                                      } else if (!exp.hasMatch(value.trim())) {
+                                        return 'Please Enter valid email';
+                                      }
+                                      return null;
+                                      // value!.isEmpty ||
+                                      //         exp.hasMatch(value.trim())
+                                      //     ? 'Enter Email'
+                                      //     : 'Please Enter valid email';
+                                    },
+                                    cursorColor: lightGreyColor,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      counterText: '',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
                                           color: lightGreyColor,
                                         ),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 16.0,
-                                                horizontal: 16.0),
                                       ),
-                                    ),
-                                    heght30,
-                                    Text(
-                                      'Password',
-                                      style: TextStyle(
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: lightGreyColor,
+                                        ),
+                                      ),
+                                      disabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: lightGreyColor,
+                                        ),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: lightGreyColor,
+                                        ),
+                                      ),
+                                      hintStyle: TextStyle(
                                         color: lightGreyColor,
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w600,
                                       ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 16.0, horizontal: 16.0),
                                     ),
-                                    TextFormField(
-                                      controller: cubit.passwordController,
-                                      style: TextStyle(
-                                        fontFamily: 'Expo Arabic',
-                                        fontSize: 16,
-                                        color: kSpecialTextFieldHintColor,
+                                  ),
+                                  heght30,
+                                  Text(
+                                    'Password',
+                                    style: TextStyle(
+                                      color: lightGreyColor,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: cubit.passwordController,
+                                    style: TextStyle(
+                                      fontFamily: 'Expo Arabic',
+                                      fontSize: 16,
+                                      color: kSpecialTextFieldHintColor,
+                                    ),
+                                    obscureText: cubit.isHide,
+                                    keyboardType: TextInputType.text,
+                                    // textAlign: TextAlign.right,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Enter Password';
+                                      }
+                                      return null;
+                                    },
+                                    cursorColor: lightGreyColor,
+                                    decoration: InputDecoration(
+                                      suffixIcon: GestureDetector(
+                                        onTap: () {
+                                          cubit.hidePassword();
+                                        },
+                                        child: cubit.isHide
+                                            ? Icon(
+                                                Icons.visibility_off_outlined,
+                                                color: lightGreyColor,
+                                              )
+                                            : Icon(
+                                                Icons.visibility_outlined,
+                                                color: lightGreyColor,
+                                              ),
                                       ),
-                                      obscureText: cubit.isHide,
-                                      keyboardType: TextInputType.text,
-                                      // textAlign: TextAlign.right,
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Enter Password';
-                                        }
-                                        return null;
-                                      },
-                                      cursorColor: lightGreyColor,
-                                      decoration: InputDecoration(
-                                        suffixIcon: GestureDetector(
+                                      isDense: true,
+                                      counterText: '',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: lightGreyColor,
+                                        ),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 16.0, horizontal: 16.0),
+                                    ),
+                                  ),
+                                  heght40,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Forget Password?',
+                                        style: TextStyle(
+                                          color: kBlackColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  heght20,
+                                  cubit.isLaoding
+                                      ? CustomLoading()
+                                      : customButton(
                                           onTap: () {
-                                            cubit.hidePassword();
+                                            if (cubit.formKey.currentState!
+                                                    .validate() &&
+                                                cubit.emailController.text !=
+                                                    "" &&
+                                                cubit.passwordController.text !=
+                                                    "") {
+                                              cubit.postLoginData();
+                                            }
+                                            // cubit.postLoginData();
                                           },
-                                          child: cubit.isHide
-                                              ? Icon(
-                                                  Icons.visibility_off_outlined,
-                                                  color: lightGreyColor,
-                                                )
-                                              : Icon(
-                                                  Icons.visibility_outlined,
-                                                  color: lightGreyColor,
-                                                ),
+                                          TextColor: kWhiteColor,
+                                          bottomColor: kbackGroundColor,
+                                          title: 'SignIn',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.5,
                                         ),
-                                        isDense: true,
-                                        counterText: '',
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
+                                  heght20,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Don\u0027t have account? ',
+                                        style: TextStyle(
                                             color: lightGreyColor,
-                                          ),
-                                        ),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 16.0,
-                                                horizontal: 16.0),
+                                            fontSize: 16.0),
                                       ),
-                                    ),
-                                    heght40,
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Forget Password?',
-                                          style: TextStyle(
-                                            color: kBlackColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w800,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    heght20,
-                                    cubit.isLaoding
-                                        ? CustomLoading()
-                                        : customButton(
-                                            onTap: () {
-                                              if (cubit.formKey.currentState!
-                                                      .validate() &&
-                                                  cubit.emailController.text !=
-                                                      "" &&
-                                                  cubit.passwordController
-                                                          .text !=
-                                                      "") {
-                                                cubit.postLoginData();
-                                              }
-                                              // cubit.postLoginData();
-                                            },
-                                            TextColor: kWhiteColor,
-                                            bottomColor: kbackGroundColor,
-                                            title: 'SignIn',
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                0.5,
-                                          ),
-                                    heght20,
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Don\u0027t have account? ',
-                                          style: TextStyle(
-                                              color: lightGreyColor,
-                                              fontSize: 16.0),
-                                        ),
-                                        Text(
-                                          'SignUp',
-                                          style: TextStyle(
-                                              color: kSpecialGreyColor,
-                                              fontSize: 16.0),
-                                        ),
-                                      ],
-                                    ),
-                                    heght10,
-                                  ],
-                                ),
+                                      Text(
+                                        'SignUp',
+                                        style: TextStyle(
+                                            color: kSpecialGreyColor,
+                                            fontSize: 16.0),
+                                      ),
+                                    ],
+                                  ),
+                                  heght10,
+                                ],
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               );
