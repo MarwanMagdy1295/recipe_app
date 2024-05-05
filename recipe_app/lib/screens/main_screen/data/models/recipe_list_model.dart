@@ -38,6 +38,7 @@ class RecipeListModel {
   dynamic incompatibilities;
   List<String>? deliverableIngredients;
   List<dynamic>? undeliverableIngredients;
+  bool? isFavorite;
 
   RecipeListModel({
     this.id,
@@ -64,6 +65,7 @@ class RecipeListModel {
     this.incompatibilities,
     this.deliverableIngredients,
     this.undeliverableIngredients,
+    this.isFavorite = false,
   });
 
   factory RecipeListModel.fromJson(Map<String, dynamic> json) =>

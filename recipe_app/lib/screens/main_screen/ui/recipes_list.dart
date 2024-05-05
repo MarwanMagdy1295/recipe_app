@@ -1,10 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/color.dart';
-import 'package:recipe_app/core/constant.dart';
-import 'package:recipe_app/core/loading.dart';
 import 'package:recipe_app/helpers/navigator_key.dart';
+import 'package:recipe_app/screens/main_screen/details_screen/ui/details_screen.dart';
+// import 'package:recipe_app/core/constant.dart';
+// import 'package:recipe_app/core/loading.dart';
+// import 'package:recipe_app/helpers/navigator_key.dart';
 import 'package:recipe_app/screens/main_screen/ux/cubit.dart';
 // import 'package:recipe_app/screens/news_details_screen/ui/news_details_screen.dart';
 
@@ -31,11 +31,11 @@ class RecipesList extends StatelessWidget {
                 final recipe = cubit.recipes[index];
                 return InkWell(
                   onTap: () {
-                    // RouteManager.navigateTo(
-                    // NewsDetailsScreen(
-                    //   artical: article,
-                    // ),
-                    // );
+                    RouteManager.navigateTo(
+                      DetailsScreen(
+                        recipe: recipe,
+                      ),
+                    );
                   },
                   child: Container(
                     height: MediaQuery.sizeOf(context).height * .25,
@@ -66,12 +66,12 @@ class RecipesList extends StatelessWidget {
                             SizedBox(
                               width: MediaQuery.sizeOf(context).width * .7,
                               child: Text(
-                                recipe.headline ?? 'NA',
-                                maxLines: 1,
+                                recipe.name ?? 'NA',
+                                maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 20.0,
                                   color: kWhiteColor,
                                   fontWeight: FontWeight.w600,
                                 ),
